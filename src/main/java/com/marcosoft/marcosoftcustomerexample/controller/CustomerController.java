@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("customer")
 @AllArgsConstructor
@@ -22,6 +24,11 @@ public class CustomerController {
     @GetMapping("{id}")
     public ResponseEntity<Customer> findById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findById(id));
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<Customer>> findAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll());
     }
 
 }

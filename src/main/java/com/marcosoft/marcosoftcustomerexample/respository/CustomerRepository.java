@@ -5,6 +5,8 @@ import com.marcosoft.marcosoftcustomerexample.model.Customer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class CustomerRepository {
@@ -52,7 +54,7 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer getById(Long id){
+    public Customer findById(Long id){
         Connection dbConnection = customerDatabase.createConnection();
 
         String sqlCommand = "select * from customer where id = ?";
@@ -72,6 +74,43 @@ public class CustomerRepository {
 
                 return customer;
             }
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        } finally {
+            try {
+                dbConnection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return null;
+    }
+
+    public List<Customer> findAll(){
+        Connection dbConnection = customerDatabase.createConnection();
+
+        String sqlCommand = "select * from customer order by id";
+
+        try (PreparedStatement statement = dbConnection.prepareStatement(sqlCommand)) {
+
+            ResultSet rs = statement.executeQuery();
+
+            List<Customer> customerList = new ArrayList<>();
+
+            while (rs.next()){
+                Customer customer = Customer.builder()
+                        .id(rs.getLong(1))
+                        .firstName(rs.getString(2))
+                        .surname(rs.getString(3))
+                        .uf(rs.getString(4))
+                        .build();
+
+                customerList.add(customer);
+
+            }
+            return customerList;
 
         } catch (Exception e) {
             log.error(e.getMessage());

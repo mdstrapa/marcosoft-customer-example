@@ -4,6 +4,8 @@ import com.marcosoft.marcosoftcustomerexample.model.Customer;
 import com.marcosoft.marcosoftcustomerexample.respository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
@@ -14,6 +16,10 @@ public class CustomerService {
     }
 
     public Customer findById(Long id){
-        return customerRepository.getById(id);
+        return customerRepository.findById(id);
+    }
+
+    public List<Customer> findAll(){
+        return customerRepository.findAll();
     }
 }
