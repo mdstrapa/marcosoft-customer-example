@@ -52,4 +52,38 @@ public class CustomerRepository {
         return null;
     }
 
+    public Customer getById(Long id){
+        Connection dbConnection = customerDatabase.createConnection();
+
+        String sqlCommand = "select * from customer where id = ?";
+
+        try (PreparedStatement statement = dbConnection.prepareStatement(sqlCommand)) {
+
+            statement.setLong(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                Customer customer = Customer.builder()
+                        .id(rs.getLong(1))
+                        .firstName(rs.getString(2))
+                        .surname(rs.getString(3))
+                        .uf(rs.getString(4))
+                        .build();
+
+                return customer;
+            }
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        } finally {
+            try {
+                dbConnection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return null;
+    }
+
 }

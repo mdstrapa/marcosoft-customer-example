@@ -13,8 +13,7 @@ public class CustomerService {
         return customerRepository.save(newCustomer);
     }
 
-
     public Customer findById(Long id){
-        return null;
+        return customerRepository.getById(id);
     }
 }
