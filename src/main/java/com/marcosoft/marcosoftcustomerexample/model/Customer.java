@@ -13,5 +13,5 @@ public class Customer {
     private Long id;
     private String firstName;
     private String surname;
-    private String UF;
+    private String uf;
 }

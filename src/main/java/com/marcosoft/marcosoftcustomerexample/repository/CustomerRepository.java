@@ -64,7 +64,7 @@ public class CustomerRepository {
 
     public Customer update(Customer customer){
         try {
-            String requestBody = mapper.writeValueAsString(mapper);
+            String requestBody = mapper.writeValueAsString(customer);
             HttpRequest request = client.buildRequest("PUT","customer", requestBody);
             HttpResponse<String> response = client.sendRequest(request);
             if(response!=null){
