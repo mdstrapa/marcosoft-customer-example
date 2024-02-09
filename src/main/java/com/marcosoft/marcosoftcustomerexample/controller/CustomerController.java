@@ -35,7 +35,7 @@ public class CustomerController {
 
     @PutMapping()
     public ResponseEntity<Customer> update(@RequestBody Customer customer){
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(customerService.update(customer));
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.update(customer));
     }
 
     @DeleteMapping("{id}")
