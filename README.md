@@ -14,7 +14,7 @@ These versions are divided in branches as follows:
 
 The CustomerTable.sql file contains the table definition used in this project. The database name should be "customerDatabase", as defined in the *application.properties file*.
 
-The rest clients connect to an auxiliary api located in this link [here](https://github.com/mdstrapa/marcosoft-customer-aux-api). For this project to fully work you have to run it in the 8081 port (already configured in its application.properties file).
+The rest clients connects to an auxiliary api located in this link [here](https://github.com/mdstrapa/marcosoft-customer-aux-api). For this project to fully work you have to run it in the 8081 port (already configured in its application.properties file).
 
 ### Technologies used in this project:
 
