@@ -12,6 +12,8 @@ public class CustomerService {
     CustomerRepository customerRepository = new CustomerRepository();
 
     public Customer save(Customer newCustomer){
+        newCustomer.setFirstName(newCustomer.getFirstName().toUpperCase());
+        newCustomer.setSurname(newCustomer.getSurname().toUpperCase());
         return customerRepository.save(newCustomer);
     }
 
