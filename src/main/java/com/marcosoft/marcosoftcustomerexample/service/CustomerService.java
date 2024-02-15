@@ -5,6 +5,7 @@ import com.marcosoft.marcosoftcustomerexample.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,4 +36,12 @@ public class CustomerService {
     public void delete(Long id){
         customerRepository.deleteById(id);
     }
+
+    public Optional<Customer> findByFirstName(String firstName){
+        return customerRepository.findByFirstName(firstName);
+    }
+    public List<Customer> findByUf(String uf){
+        return customerRepository.findByUf(uf);
+    }
+
 }

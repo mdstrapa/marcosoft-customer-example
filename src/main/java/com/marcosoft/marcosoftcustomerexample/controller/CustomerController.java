@@ -28,9 +28,21 @@ public class CustomerController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
+    @GetMapping("")
+    public ResponseEntity<Customer> findByFirstName(@RequestParam String firstName){
+        return customerService.findByFirstName(firstName)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
     @GetMapping("all")
     public ResponseEntity<List<Customer>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll());
+    }
+
+    @GetMapping("uf/{uf}")
+    public ResponseEntity<List<Customer>> findByUf(@PathVariable String uf){
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.findByUf(uf));
     }
 
     @PutMapping()
